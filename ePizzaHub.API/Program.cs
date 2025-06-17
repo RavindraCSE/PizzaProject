@@ -28,6 +28,7 @@ namespace ePizzaHub.API
             builder.Services.AddScoped<IUserRepository, UserRepository>();
             builder.Services.AddScoped<IRoleRepository, RoleRepository>();
 
+            // add dependency for auth services
             builder.Services.AddTransient<IUserService, UserService>();
             builder.Services.AddTransient<IAuthService, AuthService>();
 
