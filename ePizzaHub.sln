@@ -1,7 +1,7 @@
 ﻿
 Microsoft Visual Studio Solution File, Format Version 12.00
 # Visual Studio Version 17
-VisualStudioVersion = 17.13.35931.197 d17.13
+VisualStudioVersion = 17.13.35931.197
 MinimumVisualStudioVersion = 10.0.40219.1
 Project("{2150E333-8FDC-42A3-9474-1A3956D46DE8}") = "Backend", "Backend", "{02EA681E-C7D8-13C7-8484-4AC65E1B71E8}"
 EndProject
@@ -26,6 +26,11 @@ EndProject
 Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "ePizzaHub.Models", "ePizzaHub.Models\ePizzaHub.Models.csproj", "{E030F790-FE91-4400-86F5-D509502E364A}"
 EndProject
 Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "ePizzaHub.Repositories", "ePizzaHub.Repositories\ePizzaHub.Repositories.csproj", "{29002FF8-4A68-48A8-92F5-F0440FF2FEB3}"
+EndProject
+Project("{2150E333-8FDC-42A3-9474-1A3956D46DE8}") = "DatabaseScript", "DatabaseScript", "{199C0CAF-619D-41DD-802D-47CC928DDF86}"
+	ProjectSection(SolutionItems) = preProject
+		C:\Users\HP\Desktop\pb655_sql.sql = C:\Users\HP\Desktop\pb655_sql.sql
+	EndProjectSection
 EndProject
 Global
 	GlobalSection(SolutionConfigurationPlatforms) = preSolution
@@ -71,6 +76,7 @@ Global
 		{B73BC7DF-A748-4F93-BB0F-1AF5EA867372} = {92A8D6E9-0F87-41E9-8A30-3463C6CB8554}
 		{E030F790-FE91-4400-86F5-D509502E364A} = {92A8D6E9-0F87-41E9-8A30-3463C6CB8554}
 		{29002FF8-4A68-48A8-92F5-F0440FF2FEB3} = {05EF0F01-78BE-43E8-830B-5CE2718A4C46}
+		{199C0CAF-619D-41DD-802D-47CC928DDF86} = {05EF0F01-78BE-43E8-830B-5CE2718A4C46}
 	EndGlobalSection
 	GlobalSection(ExtensibilityGlobals) = postSolution
 		SolutionGuid = {53AD9B5E-E519-461E-AC71-2BCC4F96EEA3}
