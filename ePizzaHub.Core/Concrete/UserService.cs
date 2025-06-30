@@ -39,6 +39,7 @@ namespace ePizzaHub.Core.Concrete
                 var user = _mapper.Map<User>(createUserRequest);
                 user.Roles.Add(roleDetails);
                 // Downlad BCrypt nuget package manager
+                // to convert normal pass into hassed format
                 user.Password= BCrypt.Net.BCrypt.HashPassword(user.Password);
                 await _userRepository.AddAsync(user);
                 int rowsInserted = await _userRepository.CommitAsync();

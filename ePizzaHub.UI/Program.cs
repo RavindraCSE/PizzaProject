@@ -1,3 +1,5 @@
+using Microsoft.AspNetCore.Authentication.Cookies;
+
 namespace ePizzaHub.UI
 {
     public class Program
@@ -8,6 +10,24 @@ namespace ePizzaHub.UI
 
             // Add services to the container.
             builder.Services.AddControllersWithViews();
+
+            // tell that using cookes auth
+            builder.Services.AddAuthentication(CookieAuthenticationDefaults.AuthenticationScheme)
+                .AddCookie(options => {
+                    options.LoginPath = "/Login/Login";
+                    options.LogoutPath = "/Login/LogOut";
+                    
+                });
+            builder.Services.AddAuthorization();
+            //starts:  to congigure the api
+            builder.Services.AddHttpContextAccessor();
+            builder.Services.AddHttpClient("ePizzaAPI", options => 
+            {
+                options.BaseAddress = new Uri(builder.Configuration["ePizzaAPI:Url"]!);
+                options.DefaultRequestHeaders.Add("Accept", "application/json");
+            });
+          
+            //ends :  to congigure the api
 
             var app = builder.Build();
 
@@ -24,6 +44,8 @@ namespace ePizzaHub.UI
 
             app.UseRouting();
 
+            // auth
+            app.UseAuthentication();
             app.UseAuthorization();
 
             app.MapControllerRoute(

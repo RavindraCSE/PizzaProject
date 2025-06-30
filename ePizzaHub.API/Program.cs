@@ -22,7 +22,8 @@ namespace ePizzaHub.API
             builder.Services.AddEndpointsApiExplorer();
             builder.Services.AddSwaggerGen();
 
-            builder.Services.AddDbContext<PB655Context>(x => {
+            builder.Services.AddDbContext<PB655Context>(x => 
+            {
                 x.UseSqlServer(builder.Configuration.GetConnectionString("DatabaseConnection"));
             });
             builder.Services.AddScoped<IUserRepository, UserRepository>();

@@ -19,7 +19,11 @@ namespace ePizzaHub.Repositories.Concrete
 
         public async Task<User> FindByUserNameAsync(string username)
         {
-            return await _dbContext.Users.FirstOrDefaultAsync(x => x.Email == username);
+            // create join with the user and role table
+            return await _dbContext
+                .Users
+                .Include(x=>x.Roles)
+                .FirstOrDefaultAsync(x => x.Email == username);
         }
     }
 }
