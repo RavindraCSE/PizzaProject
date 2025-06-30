@@ -25,19 +25,20 @@ namespace ePizzaHub.UI.Controllers
         [HttpPost]
         public async Task<IActionResult> Login(LoginViewModel request)
         {
-            var client = _httpClientFactory.CreateClient("ePizzaAPI");
-            var userDetails = await client.GetFromJsonAsync<ValidateUserResponse>($"Auth?username={request.EmailAddress}&password={request.Password}");
-            
-            if(userDetails is not null)
+            if (ModelState.IsValid)
             {
-                // add hard coded claim
-                List<Claim> claims = new List<Claim>();
-                claims.Add(new Claim(ClaimTypes.Name,"Sample@123"));
+                var client = _httpClientFactory.CreateClient("ePizzaAPI");
+                var userDetails = await client.GetFromJsonAsync<ValidateUserResponse>($"Auth?username={request.EmailAddress}&password={request.Password}");
 
-               await  GenerateTicket(claims);
-                return RedirectToAction("Dashboard", "Index");
+                if (userDetails is not null)
+                {
+                    // add hard coded claim
+                    List<Claim> claims = new List<Claim>();
+                    claims.Add(new Claim(ClaimTypes.Name, "Sample@123"));
+                    await GenerateTicket(claims);
+                    return RedirectToAction("Index", "Dashboard");
+                }
             }
-            
             return View();
         }
 
@@ -56,6 +57,17 @@ namespace ePizzaHub.UI.Controllers
                 ExpiresUtc=DateTime.UtcNow.AddMinutes(60)
                 });
 
+        }
+
+        [HttpGet]
+        public async Task<IActionResult> Register()
+        {
+            return View();
+        }
+        [HttpPost]
+        public async Task<IActionResult> Register(RegisterUserViewModel request)
+        {
+            return View();
         }
     }
 }
