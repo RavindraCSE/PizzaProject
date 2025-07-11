@@ -1,4 +1,5 @@
-﻿using ePizzaHub.UI.Models.ApiModels.Response;
+﻿using ePizzaHub.UI.Models.ApiModels.Request;
+using ePizzaHub.UI.Models.ApiModels.Response;
 using ePizzaHub.UI.Models.ViewModels;
 using Microsoft.AspNetCore.Authentication;
 using Microsoft.AspNetCore.Authentication.Cookies;
@@ -67,6 +68,20 @@ namespace ePizzaHub.UI.Controllers
         [HttpPost]
         public async Task<IActionResult> Register(RegisterUserViewModel request)
         {
+            if(ModelState.IsValid)
+            {
+                var client = _httpClientFactory.CreateClient("ePizzaAPI");
+                var userRequest = new CreateUserRequestModel()
+                {
+                    Email = request.Email,
+                    Name = request.UserName,
+                    Password = request.Password,
+                    PhoneNumber = request.PhoneNo
+                };
+                var userDetails = await client.PostAsJsonAsync<CreateUserRequestModel>("User/Create", userRequest);
+                // get the proper status code 
+                userDetails.EnsureSuccessStatusCode();
+            }
             return View();
         }
     }

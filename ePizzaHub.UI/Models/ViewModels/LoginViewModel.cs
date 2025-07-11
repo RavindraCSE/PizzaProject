@@ -9,7 +9,7 @@ namespace ePizzaHub.UI.Models.ViewModels
         public string EmailAddress { get; set; } = default!;
 
         [Required(ErrorMessage ="Password is required")]
-        [MinLength(5,ErrorMessage ="Password should be off five characters")]
+        [MinLength(4,ErrorMessage ="Password should be off five characters")]
         [MaxLength(15,ErrorMessage ="Password can be 15 char. max")]
         public string Password { get; set; }= default!;
     }
